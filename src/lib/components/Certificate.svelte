@@ -63,7 +63,11 @@
 
   onMount(() => {
     // Fonts can finish loading after the first measurement; re-fit once they're ready.
-    if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
+    if (
+      typeof document !== "undefined" &&
+      document.fonts &&
+      document.fonts.ready
+    ) {
       document.fonts.ready.then(fitBody);
     }
   });
@@ -99,9 +103,10 @@
     </div>
 
     <p class="c-body" class:c-body-custom={form.customBody} bind:this={bodyEl}>
-      {#if form.customBody}{form.customBody}{:else}{#each c.body as seg}{#if seg.field}<span class="c-fill"
-            >{form[seg.field] || "\u00A0\u00A0\u00A0\u00A0"}</span
-          >{:else}{seg.text}{/if}{/each}{/if}
+      {#if form.customBody}{form.customBody}{:else}{#each c.body as seg}{#if seg.field}<span
+              class="c-fill"
+              >{form[seg.field] || "\u00A0\u00A0\u00A0\u00A0"}</span
+            >{:else}{seg.text}{/if}{/each}{/if}
     </p>
 
     <div class="c-sign">
@@ -263,7 +268,8 @@
 
   .c-fill {
     font-weight: 700;
-    color: #1a1a1a;
+    color: #1f1fbc;
+    -webkit-text-stroke: 0.5px #b8860b;
     word-break: break-word;
   }
 
@@ -305,6 +311,7 @@
   .c-quotes p {
     margin: 8px 0;
     font-size: 15px;
+    font-weight: 700;
     font-style: italic;
   }
 
