@@ -21,7 +21,7 @@
 
 	<label class="field">
 		<span>Date</span>
-		<input type="text" bind:value={form.date} placeholder="e.g. 29 September 2026" />
+		<input type="date" bind:value={form.date} />
 	</label>
 
 	<label class="field">

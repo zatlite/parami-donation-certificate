@@ -8,6 +8,7 @@
   import { CONTENT } from "$lib/certificate-content.js";
   import fancyBorder from "$lib/assets/fancy-border.js";
   import lotus from "$lib/assets/lotus.js";
+  import { formatCertDate } from "$lib/date.js";
   import { onMount } from "svelte";
 
   let {
@@ -101,7 +102,7 @@
 
     <div class="c-date">
       <span class="c-date-label">{c.labels.date}</span>
-      <span class="c-date-value">{form.date}</span>
+      <span class="c-date-value">{formatCertDate(form.date, lang)}</span>
     </div>
 
     <p class="c-body" class:c-body-custom={form.customBody} bind:this={bodyEl}>
