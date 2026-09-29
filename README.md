@@ -1,6 +1,6 @@
 # Donation Acknowledgement Certificate
 
-A Svelte **static site** for **Pāramī Santikara Vihāra Dhamma Centre** that generates a
+A Svelte **static site** for **Pāramī Dhamma Centre Inc.** that generates a
 _Certificate of Honor for Offering of The Four Requisites_ from a short form, then lets
 you **export it as PNG or PDF** and **copy the image to the clipboard**.
 
@@ -71,22 +71,21 @@ notes.md                          Source content for the certificate template
 ## Logos
 
 The two temple logos are included as **transparent-background SVGs** in
-`src/lib/assets/` (`santikara-logo.svg`, `parami-logo.svg`) and are wired into the
-certificate header — **Santikara** on the left, **Parami** on the right. Because their
-backgrounds are transparent, they sit cleanly on any background colour.
+`src/lib/assets/` (`parami-logo.svg`, `parami-building.jpeg`) and are wired into the
+certificate header — **Parami logo** on the left, **Parami building** on the right.
 
 They are imported and passed to the certificate in `src/routes/+page.svelte`:
 
 ```svelte
-import santikaraLogo from '$lib/assets/santikara-logo.svg';
+import paramiBuilding from '$lib/assets/parami-building.jpeg';
 import paramiLogo from '$lib/assets/parami-logo.svg';
 ...
 <Certificate
   {form}
   {lang}
   bind:node={certNode}
-  logoLeft={santikaraLogo}
-  logoRight={paramiLogo}
+  logoLeft={paramiLogo}
+  logoRight={paramiBuilding}
 />
 ```
 
@@ -138,7 +137,7 @@ from four sources, chosen in the form (`SignatureField.svelte`):
 - **Upload** — pick an image file (read as a data URL)
 - **None** — no signature
 
-**Persistence:** in **Draw** mode, *Save to browser* stores the drawn signature as a PNG
+**Persistence:** in **Draw** mode, _Save to browser_ stores the drawn signature as a PNG
 data URL in `localStorage` (key `parami-signature`). On the next visit it loads
 automatically and is used as the signature (mode **Saved**) — so your signature acts as a
 persistent, per-browser default. **Remove saved signature** (in the Saved tab) clears it.

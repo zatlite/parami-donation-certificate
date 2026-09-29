@@ -3,7 +3,7 @@
   import CertificateForm from "$lib/components/CertificateForm.svelte";
   import Certificate from "$lib/components/Certificate.svelte";
   import { exportPng, exportPdf, copyImageToClipboard } from "$lib/export.js";
-  import santikaraLogo from "$lib/assets/santikara-logo.svg";
+  import paramiBuilding from "$lib/assets/parami-building.jpg";
   import paramiLogo from "$lib/assets/parami-logo.svg";
   import SignatureField from "$lib/components/SignatureField.svelte";
   import HistoryTab from "$lib/components/HistoryTab.svelte";
@@ -167,21 +167,33 @@
     );
 
   const onPngHist = () =>
-    run(() => exportPng(certNode, filename("png", historySelected?.name)), "PNG downloaded.", {
-      save: false,
-    });
+    run(
+      () => exportPng(certNode, filename("png", historySelected?.name)),
+      "PNG downloaded.",
+      {
+        save: false,
+      },
+    );
   const onPdfHist = () =>
-    run(() => exportPdf(certNode, filename("pdf", historySelected?.name)), "PDF downloaded.", {
-      save: false,
-    });
+    run(
+      () => exportPdf(certNode, filename("pdf", historySelected?.name)),
+      "PDF downloaded.",
+      {
+        save: false,
+      },
+    );
   const onCopyHist = () =>
-    run(() => copyImageToClipboard(certNode), "Certificate image copied to clipboard.", {
-      save: false,
-    });
+    run(
+      () => copyImageToClipboard(certNode),
+      "Certificate image copied to clipboard.",
+      {
+        save: false,
+      },
+    );
 </script>
 
 <svelte:head>
-  <title>Donation Certificate — Pāramī Santikara Vihāra</title>
+  <title>Donation Certificate — Pāramī Dhamma Centre Inc.</title>
 </svelte:head>
 
 <main class="page">
@@ -212,8 +224,10 @@
           <button class="btn primary" onclick={onPng} disabled={busy}
             >Export PNG</button
           >
-          <button class="btn" onclick={onPdf} disabled={busy}>Export PDF</button>
-          <button class="btn" onclick={onCopy} disabled={busy}>Copy Image</button
+          <button class="btn" onclick={onPdf} disabled={busy}>Export PDF</button
+          >
+          <button class="btn" onclick={onCopy} disabled={busy}
+            >Copy Image</button
           >
         </div>
 
@@ -269,8 +283,8 @@
             form={previewData.form}
             lang={previewData.lang}
             bind:node={certNode}
-            logoLeft={santikaraLogo}
-            logoRight={paramiLogo}
+            logoLeft={paramiLogo}
+            logoRight={paramiBuilding}
             signature={previewData.signature}
           />
         </div>

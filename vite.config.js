@@ -12,7 +12,7 @@ export default defineConfig({
       },
       adapter: adapter(),
       paths: {
-        base: "/santikara-donation-certificate",
+        base: "/parami-donation-certificate",
       },
     }),
   ],

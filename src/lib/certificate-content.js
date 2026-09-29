@@ -4,7 +4,7 @@
 
 export const CONTENT = {
   en: {
-    templeName: "Pāramī Santikara Vihāra Dhamma Centre",
+    templeName: "Pāramī Dhamma Centre",
     address: "18 Hilwa St, Villawood, NSW, Australia",
     title: "Certificate of Appreciation for Offering of The Four Requisites",
     labels: {
@@ -31,7 +31,7 @@ export const CONTENT = {
     logoLabels: ["Logo", "Logo"],
   },
   my: {
-    templeName: "ပါရမီသန္တိကရဝိဟာရဓမ္မရိပ်သာ",
+    templeName: "ပါရမီဓမ္မရိပ်သာ",
     address: "18 Hilwa St, Villawood, NSW, Australia",
     title: "စတုပစ္စယအလှူတော် အနုမောဒနာမှတ်တမ်းလွှာ",
     labels: {
@@ -39,7 +39,7 @@ export const CONTENT = {
     },
     body: [
       {
-        text: "မြတ်ဗုဒ္ဓသာသနာတော်ကြီး အရှည်တည်တံ့ ပြန့်ပွါးစေရန် စိတ်ရည်သန်၍ တည်ထောင်ဖွင့်လှစ်အပ်သော ပါရမီသန္တိကရဝိဟာရဓမ္မရိပ်သာသို့ ",
+        text: "မြတ်ဗုဒ္ဓသာသနာတော်ကြီး အရှည်တည်တံ့ ထွန်းကား ပြန့်ပွါးစေရန် စိတ်ရည်သန်၍ တည်ထောင်ဖွင့်လှစ်အပ်သော ပါရမီဓမ္မရိပ်သာသို့ ",
       },
       { field: "name" },
       { text: " နေရပ်လိပ်စာ " },

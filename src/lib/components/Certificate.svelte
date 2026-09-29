@@ -183,6 +183,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    margin: 20px 10px;
   }
 
   .c-logo {
@@ -214,14 +215,14 @@
 
   .c-temple {
     margin: 0;
-    font-size: 26px;
+    font-size: 34px;
     font-weight: 700;
     color: #7c2d12;
     line-height: 1.3;
   }
 
   .lang-my .c-temple {
-    font-size: 34px;
+    font-size: 40px;
   }
 
   .c-address {
@@ -256,6 +257,7 @@
     margin: 0;
     font-size: 27px;
     font-weight: 700;
+    width: 100%;
     color: #7c2d12;
     padding: 8px 20px;
     border-top: 2px solid #b8860b;
