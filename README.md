@@ -93,17 +93,24 @@ replace the SVG (or PNG) files and update the imports. Keep the assets under `sr
 
 ## Decorative border
 
-The ornate certificate frame comes from `src/lib/assets/fancy-border.jpeg` applied as a
-9-slice **`border-image`** on `.cert-border` in `Certificate.svelte` — the corners stay
-crisp and the edges scale to the A4 page. The `border-image-slice` is `20.8%` (the
-frame's inner-content inset).
+The ornate certificate frame is baked from `src/lib/assets/fancy-border.jpeg` into an
+**A4-shaped 9-slice** image and rendered as a plain `<img>` overlay
+(`.cert-frame-border`) behind the content in `Certificate.svelte` — corners stay crisp
+and the edge motif is repeated a whole number of times along each side
+(`border-image-repeat: round`).
 
-For the frame to appear in the html-to-image **PNG/PDF exports**, it is embedded as an
-inline **data URI** (`src/lib/assets/fancy-border.js`, generated from the JPEG) — an
-external `url()` would not survive the SVG-based export. To regenerate it after changing
-`fancy-border.jpeg`, re-run the small Pillow snippet that downscales the JPEG (~640px,
-quality 82) and writes the base64 data URI into `fancy-border.js`. Adjust the frame
-thickness via the `border`/`border-image-width` values (currently `56px`).
+**Why not CSS `border-image`?** It looks fine in the browser, but the html-to-image
+**PNG/PDF export** (which rasterises via an SVG `<foreignObject>`) mis-renders
+`border-image` — it bleeds a faint full-image "ghost/grid" across the whole certificate.
+Rendering the frame as a normal `<img>` avoids that entirely.
+
+The baked frame lives in `src/lib/assets/fancy-border.js` as an inline **data URI** (so
+html-to-image embeds it in exports). It is generated from `fancy-border.jpeg` by a small
+Pillow script that 9-slices the square source (inner-content inset `20.8%` → `213px`) and
+composes it onto a 1588×2246 (A4 @2×) canvas with the corners kept and each edge tiled a
+whole number of times (`round` — ~4 across the top/bottom, ~6 down the sides). To
+regenerate after changing `fancy-border.jpeg`, re-run that bake script.
+Adjust the frame thickness via the baked `bw` value and the `.cert-border` padding.
 
 ## Editing the certificate text
 

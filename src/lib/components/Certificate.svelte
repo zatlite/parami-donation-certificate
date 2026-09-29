@@ -27,11 +27,8 @@
   </div>
 {/snippet}
 
-<div
-  class="cert-frame lang-{lang}"
-  bind:this={node}
-  style="--fancy-border: url({fancyBorder})"
->
+<div class="cert-frame lang-{lang}" bind:this={node}>
+  <img class="cert-frame-border" src={fancyBorder} alt="" aria-hidden="true" />
   <div class="cert-border">
     <!-- <header class="c-head"> -->
     <!--   <div class="c-head-mid"> -->
@@ -92,11 +89,21 @@
 
 <style>
   .cert-frame {
+    position: relative;
     width: 794px;
     height: 1123px;
     background: #ffffff;
     color: #1a1a1a;
-    padding: 14px;
+    overflow: hidden;
+  }
+
+  .cert-frame-border {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
   }
 
   .cert-frame.lang-en {
@@ -109,14 +116,11 @@
   }
 
   .cert-border {
+    position: relative;
+    z-index: 1;
     height: 100%;
     box-sizing: border-box;
-    border: 56px solid transparent;
-    border-image-source: var(--fancy-border);
-    border-image-slice: 20.8%;
-    border-image-width: 56px;
-    border-image-repeat: round;
-    padding: 10px 16px;
+    padding: 62px 66px;
     display: flex;
     flex-direction: column;
   }
