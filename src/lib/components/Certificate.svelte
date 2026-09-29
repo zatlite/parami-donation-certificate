@@ -7,6 +7,7 @@
   import "@fontsource/padauk/700.css";
   import { CONTENT } from "$lib/certificate-content.js";
   import fancyBorder from "$lib/assets/fancy-border.js";
+  import lotus from "$lib/assets/lotus.js";
   import { onMount } from "svelte";
 
   let {
@@ -75,6 +76,7 @@
 
 <div class="cert-frame lang-{lang}" bind:this={node}>
   <img class="cert-frame-border" src={fancyBorder} alt="" aria-hidden="true" />
+  <img class="c-lotus" src={lotus} alt="" aria-hidden="true" />
   <div class="cert-border">
     <header class="c-head">
       {#if logoLeft}
@@ -141,6 +143,18 @@
     width: 100%;
     height: 100%;
     display: block;
+    pointer-events: none;
+  }
+
+  .c-lotus {
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    opacity: 0.3;
+    z-index: 0;
     pointer-events: none;
   }
 

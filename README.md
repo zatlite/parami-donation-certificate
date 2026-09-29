@@ -21,6 +21,7 @@ Built with **SvelteKit** (`adapter-static`), **html-to-image**, and **jsPDF**.
   The fixed template text switches language; the values you type are shown as-is.
 - Live certificate preview that scales to fit the screen.
 - Ornamental **fancy border** frame (baked 9-slice, `round`) around the certificate.
+- Faint **lotus watermark** at the bottom of the body.
 - Optional **signature** above the signature line — Saved / Draw / Upload / None, with
   drawn signatures saveable to the browser (localStorage).
 - **Auto-fit** — long field entries automatically shrink the field text so the signature
@@ -117,6 +118,14 @@ composes it onto a 1588×2246 (A4 @2×) canvas with the corners kept and each ed
 whole number of times (`round` — ~4 across the top/bottom, ~6 down the sides). To
 regenerate after changing `fancy-border.jpeg`, re-run that bake script.
 Adjust the frame thickness via the baked `bw` value and the `.cert-border` padding.
+
+## Watermark
+
+A faint blue **lotus watermark** sits at the bottom of the body to fill the lower part of
+the page. It's keyed from `src/lib/assets/lotus.jpeg` (white background removed) into a
+transparent-PNG **data URI** (`src/lib/assets/lotus.js`) and rendered as a low-opacity
+`<img class="c-lotus">` behind the content — so it appears in the PNG/PDF/clipboard
+exports. Tune via the `.c-lotus` `opacity` / `width` / `top` in `Certificate.svelte`.
 
 ## Signature
 
