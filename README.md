@@ -60,26 +60,35 @@ src/
 notes.md                          Source content for the certificate template
 ```
 
-## Adding the two logos
+## Logos
 
-The header shows two dashed **placeholder** circles by default. To use real logos:
+The two temple logos are included as **transparent-background SVGs** in
+`src/lib/assets/` (`santikara-logo.svg`, `parami-logo.svg`) and are wired into the
+certificate header — **Santikara** on the left, **Parami** on the right. Because their
+backgrounds are transparent, they sit cleanly on any background colour.
 
-1. Drop the images into the `static/` folder, e.g. `static/logo-left.png` and
-   `static/logo-right.png` (files in `static/` are served from the site root).
-2. Pass them to the certificate in `src/routes/+page.svelte`:
+They are imported and passed to the certificate in `src/routes/+page.svelte`:
 
-   ```svelte
-   <Certificate
-     {form}
-     {lang}
-     bind:node={certNode}
-     logoLeft="/logo-left.png"
-     logoRight="/logo-right.png"
-   />
-   ```
+```svelte
+import santikaraLogo from '$lib/assets/santikara-logo.svg';
+import paramiLogo from '$lib/assets/parami-logo.svg';
+...
+<Certificate
+  {form}
+  {lang}
+  bind:node={certNode}
+  logoLeft={santikaraLogo}
+  logoRight={paramiLogo}
+/>
+```
 
-Keeping the logos in `static/` (same origin) ensures html-to-image can include them in
-the exported image and PDF.
+To **swap sides**, exchange `logoLeft` / `logoRight`. To use **different artwork**,
+replace the SVG (or PNG) files and update the imports. Keep the assets under `src/lib/`
+(bundled, same-origin) so html-to-image can include them in the PNG/PDF exports.
+
+> The SVGs were generated from the original JPEGs by removing the (border-connected)
+> white background and embedding the result as a base64 PNG inside an SVG wrapper — the
+> artwork looks identical but now has a transparent, any-background background.
 
 ## Editing the certificate text
 

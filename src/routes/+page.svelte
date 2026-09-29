@@ -3,6 +3,8 @@
 	import CertificateForm from '$lib/components/CertificateForm.svelte';
 	import Certificate from '$lib/components/Certificate.svelte';
 	import { exportPng, exportPdf, copyImageToClipboard } from '$lib/export.js';
+	import santikaraLogo from '$lib/assets/santikara-logo.svg';
+	import paramiLogo from '$lib/assets/parami-logo.svg';
 
 	const CERT_W = 794;
 	const CERT_H = 1123;
@@ -85,7 +87,13 @@
 				style="width:{CERT_W * scale}px; height:{CERT_H * scale}px;"
 			>
 				<div class="cert-scale" style="transform: scale({scale});">
-					<Certificate {form} {lang} bind:node={certNode} />
+					<Certificate
+						{form}
+						{lang}
+						bind:node={certNode}
+						logoLeft={santikaraLogo}
+						logoRight={paramiLogo}
+					/>
 				</div>
 			</div>
 		</div>

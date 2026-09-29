@@ -128,6 +128,7 @@
 
 	.c-logo-img {
 		border: none;
+		border-radius: 0;
 		object-fit: contain;
 		background: transparent;
 	}
