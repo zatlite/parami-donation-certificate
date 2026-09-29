@@ -4,7 +4,7 @@
 
 export const CONTENT = {
   en: {
-    location: "Sydney, New South Wales, Australia",
+    location: "Sydney, Australia",
     templeName: "Pāramī Santikara Vihāra Dhamma Centre",
     address: "18 Hilwa St, Villawood, NSW, Australia",
     title: "Certificate of Appreciation for Offering of The Four Requisites",
@@ -26,7 +26,7 @@ export const CONTENT = {
     logoLabels: ["Logo", "Logo"],
   },
   my: {
-    location: "ဩစတြေးလျနိုင်ငံ နယူးဆော့သ်ဝေးလ်ပြည်နယ် ဆစ်ဒနီမြို့",
+    location: "ဩစတြေးလျနိုင်ငံ ဆစ်ဒနီမြို့",
     templeName: "ပါရမီသန္တိကရဝိဟာရဓမ္မရိပ်သာ",
     address: "18 Hilwa St, Villawood, NSW, Australia",
     title: "စတုပစ္စယအလှူတော် အနုမောဒနာမှတ်တမ်းလွှာ",

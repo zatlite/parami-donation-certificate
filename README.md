@@ -18,6 +18,7 @@ Built with **SvelteKit** (`adapter-static`), **html-to-image**, and **jsPDF**.
 - **Language toggle** — render the certificate **English-only** or **Burmese-only**.
   The fixed template text switches language; the values you type are shown as-is.
 - Live certificate preview that scales to fit the screen.
+- Ornamental **fancy border** frame (9-slice `border-image`) around the certificate.
 - **Export PNG** and **Export PDF** (A4 portrait), and **Copy Image** to the clipboard.
 - Self-hosted fonts so Burmese renders correctly in the browser _and_ in exports:
   [Padauk](https://fontsource.org/fonts/padauk) (Myanmar) and
@@ -89,6 +90,20 @@ replace the SVG (or PNG) files and update the imports. Keep the assets under `sr
 > The SVGs were generated from the original JPEGs by removing the (border-connected)
 > white background and embedding the result as a base64 PNG inside an SVG wrapper — the
 > artwork looks identical but now has a transparent, any-background background.
+
+## Decorative border
+
+The ornate certificate frame comes from `src/lib/assets/fancy-border.jpeg` applied as a
+9-slice **`border-image`** on `.cert-border` in `Certificate.svelte` — the corners stay
+crisp and the edges scale to the A4 page. The `border-image-slice` is `20.8%` (the
+frame's inner-content inset).
+
+For the frame to appear in the html-to-image **PNG/PDF exports**, it is embedded as an
+inline **data URI** (`src/lib/assets/fancy-border.js`, generated from the JPEG) — an
+external `url()` would not survive the SVG-based export. To regenerate it after changing
+`fancy-border.jpeg`, re-run the small Pillow snippet that downscales the JPEG (~640px,
+quality 82) and writes the base64 data URI into `fancy-border.js`. Adjust the frame
+thickness via the `border`/`border-image-width` values (currently `56px`).
 
 ## Editing the certificate text
 
