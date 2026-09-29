@@ -18,10 +18,10 @@ export const CONTENT = {
     particles: { from: "", for: "", object: "" },
     acknowledgement:
       "We gratefully acknowledge receipt of the contributions and offer our blessings and words of appreciation \u201CS\u0101dhu\u201D to all the donors.",
-    signatures: ["Received by (Collector)", "Monastery Trustee Board"],
+    signatures: ["Received by", "Monastery Trustee Board"],
     quotes: [
       "\u201COffering to the Sangha yields great benefit\u201D",
-      "\u201CD\u0101na is the essence of Wealth. S\u012Bla is the essence of self body. Bh\u0101van\u0101 is the essence of self life.\u201D",
+      "\u201CD\u0101na is the essence of Wealth. S\u012Bla is the essence of body. Bh\u0101van\u0101 is the essence of life.\u201D",
     ],
     logoLabels: ["Logo", "Logo"],
   },
