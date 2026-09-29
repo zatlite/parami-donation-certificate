@@ -1,19 +1,28 @@
 <script>
-	import { onMount } from 'svelte';
-	import CertificateForm from '$lib/components/CertificateForm.svelte';
-	import Certificate from '$lib/components/Certificate.svelte';
-	import { exportPng, exportPdf, copyImageToClipboard } from '$lib/export.js';
-	import santikaraLogo from '$lib/assets/santikara-logo.svg';
-	import paramiLogo from '$lib/assets/parami-logo.svg';
+  import { onMount } from "svelte";
+  import CertificateForm from "$lib/components/CertificateForm.svelte";
+  import Certificate from "$lib/components/Certificate.svelte";
+  import { exportPng, exportPdf, copyImageToClipboard } from "$lib/export.js";
+  import santikaraLogo from "$lib/assets/santikara-logo.svg";
+  import paramiLogo from "$lib/assets/parami-logo.svg";
+  import SignatureField from "$lib/components/SignatureField.svelte";
 
 	const CERT_W = 794;
 	const CERT_H = 1123;
 
-	let form = $state({ name: '', address: '', towards: '', amount: '', date: '' });
-	let lang = $state('en');
-	let certNode = $state(null);
-	let busy = $state(false);
-	let status = $state(null);
+  let form = $state({
+    name: "",
+    address: "",
+    towards: "",
+    amount: "",
+    date: "",
+    customBody: "",
+  });
+  let lang = $state("my");
+  let signature = $state(null);
+  let certNode = $state(null);
+  let busy = $state(false);
+  let status = $state(null);
 
 	let previewWidth = $state(CERT_W);
 	let scale = $derived(Math.min(1, previewWidth / CERT_W));
@@ -64,9 +73,9 @@
 		<p>Pāramī Santikara Vihāra Dhamma Centre</p>
 	</header>
 
-	<div class="layout">
-		<div class="left">
-			<CertificateForm {form} bind:lang />
+      <SignatureField bind:signature />
+
+			<SignatureField bind:signature defaultSrc={defaultSig} />
 
 			<div class="actions">
 				<button class="btn primary" onclick={onPng} disabled={busy}>Export PNG</button>
@@ -93,6 +102,7 @@
 						bind:node={certNode}
 						logoLeft={santikaraLogo}
 						logoRight={paramiLogo}
+						{signature}
 					/>
 				</div>
 			</div>

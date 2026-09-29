@@ -21,7 +21,7 @@ export const CONTENT = {
     signatures: ["Received by", "Monastery Trustee Board"],
     quotes: [
       "\u201COffering to the Sangha yields great benefit\u201D",
-      "\u201CD\u0101na is the essence of Wealth. S\u012Bla is the essence of body. Bh\u0101van\u0101 is the essence of life.\u201D",
+      "\u201CD\u0101na is the essence of wealth. S\u012Bla is the essence of body. Bh\u0101van\u0101 is the essence of life.\u201D",
     ],
     logoLabels: ["Logo", "Logo"],
   },

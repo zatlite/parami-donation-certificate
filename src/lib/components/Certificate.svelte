@@ -14,6 +14,7 @@
     node = $bindable(),
     logoLeft = null,
     logoRight = null,
+    signature = null,
   } = $props();
 
   let c = $derived(CONTENT[lang] ?? CONTENT.en);
@@ -30,11 +31,6 @@
 <div class="cert-frame lang-{lang}" bind:this={node}>
   <img class="cert-frame-border" src={fancyBorder} alt="" aria-hidden="true" />
   <div class="cert-border">
-    <!-- <header class="c-head"> -->
-    <!--   <div class="c-head-mid"> -->
-    <!--     <p class="c-location">{c.location}</p> -->
-    <!--   </div> -->
-    <!-- </header> -->
     <header class="c-head">
       {#if logoLeft}
         <img class="c-logo c-logo-img" src={logoLeft} alt="" />
@@ -75,6 +71,9 @@
     <p class="c-ack">{c.acknowledgement}</p>
 
     <div class="c-sign">
+      {#if signature}
+        <img class="c-sign-img" src={signature} alt="Signature" />
+      {/if}
       <div class="c-sign-line"></div>
       <p class="c-sign-name">{c.signatures[0]}</p>
       <p class="c-sign-name">{c.signatures[1]}</p>
@@ -241,6 +240,14 @@
     align-self: flex-end;
     text-align: center;
     width: 260px;
+  }
+
+  .c-sign-img {
+    display: block;
+    max-width: 100%;
+    height: 64px;
+    object-fit: contain;
+    margin: 0 auto -6px;
   }
 
   .c-sign-line {

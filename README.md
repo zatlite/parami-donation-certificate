@@ -18,7 +18,11 @@ Built with **SvelteKit** (`adapter-static`), **html-to-image**, and **jsPDF**.
 - **Language toggle** — render the certificate **English-only** or **Burmese-only**.
   The fixed template text switches language; the values you type are shown as-is.
 - Live certificate preview that scales to fit the screen.
-- Ornamental **fancy border** frame (9-slice `border-image`) around the certificate.
+- Ornamental **fancy border** frame (baked 9-slice, `round`) around the certificate.
+- Optional **signature** above the signature line — Saved / Draw / Upload / None, with
+  drawn signatures saveable to the browser (localStorage).
+- **Auto-fit** — long field entries automatically shrink the field text so the signature
+  and footer never overflow the fixed A4 page.
 - **Export PNG** and **Export PDF** (A4 portrait), and **Copy Image** to the clipboard.
 - Self-hosted fonts so Burmese renders correctly in the browser _and_ in exports:
   [Padauk](https://fontsource.org/fonts/padauk) (Myanmar) and
@@ -111,6 +115,25 @@ composes it onto a 1588×2246 (A4 @2×) canvas with the corners kept and each ed
 whole number of times (`round` — ~4 across the top/bottom, ~6 down the sides). To
 regenerate after changing `fancy-border.jpeg`, re-run that bake script.
 Adjust the frame thickness via the baked `bw` value and the `.cert-border` padding.
+
+## Signature
+
+The block above the "Received by / Monastery Trustee Board" line can show a signature
+from four sources, chosen in the form (`SignatureField.svelte`):
+
+- **Saved** — a signature you previously drew and stored in the browser (see below)
+- **Draw** — draw with mouse/touch on a canvas (**Save to browser** persists it,
+  **Clear** resets; the ink is trimmed to a tight PNG)
+- **Upload** — pick an image file (read as a data URL)
+- **None** — no signature
+
+**Persistence:** in **Draw** mode, *Save to browser* stores the drawn signature as a PNG
+data URL in `localStorage` (key `parami-signature`). On the next visit it loads
+automatically and is used as the signature (mode **Saved**) — so your signature acts as a
+persistent, per-browser default. **Remove saved signature** (in the Saved tab) clears it.
+
+Uploaded/drawn signatures should be **transparent** (ink only) so they sit cleanly on the
+line. The signature is a plain `<img>`, so it appears in the PNG/PDF/clipboard exports.
 
 ## Editing the certificate text
 
