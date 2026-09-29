@@ -4,7 +4,12 @@ A Svelte **static site** for **Pāramī Santikara Vihāra Dhamma Centre** that g
 _Certificate of Honor for Offering of The Four Requisites_ from a short form, then lets
 you **export it as PNG or PDF** and **copy the image to the clipboard**.
 
-Built with **SvelteKit** (`adapter-static`), **html2canvas**, and **jsPDF**.
+Built with **SvelteKit** (`adapter-static`), **html-to-image**, and **jsPDF**.
+
+> Rasterizing uses **html-to-image** (SVG `foreignObject` + embedded web fonts) rather
+> than html2canvas, because html2canvas cannot shape complex scripts — Myanmar stacked
+> consonants (e.g. `သန္တိ`, `ဓမ္မ`) break in its output. html-to-image uses the browser's
+> native text rendering, so exports match the on-screen certificate exactly.
 
 ## Features
 
@@ -73,7 +78,7 @@ The header shows two dashed **placeholder** circles by default. To use real logo
    />
    ```
 
-Keeping the logos in `static/` (same origin) ensures html2canvas can include them in
+Keeping the logos in `static/` (same origin) ensures html-to-image can include them in
 the exported image and PDF.
 
 ## Editing the certificate text

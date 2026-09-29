@@ -19,7 +19,7 @@
 	"dependencies": {
 		"@fontsource/eb-garamond": "^5.3.0",
 		"@fontsource/padauk": "^5.3.0",
-		"html2canvas": "^1.4.1",
+		"html-to-image": "^1.11.13",
 		"jspdf": "^4.2.1"
 	}
 }
