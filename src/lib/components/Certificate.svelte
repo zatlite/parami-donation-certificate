@@ -211,12 +211,6 @@
     text-align: center;
   }
 
-  .c-location {
-    margin: 0 0 4px;
-    font-size: 15px;
-    color: #444;
-  }
-
   .c-temple {
     margin: 0;
     font-size: 26px;

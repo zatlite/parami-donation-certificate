@@ -4,18 +4,12 @@
 
 export const CONTENT = {
   en: {
-    location: "Sydney, Australia",
     templeName: "Pāramī Santikara Vihāra Dhamma Centre",
     address: "18 Hilwa St, Villawood, NSW, Australia",
     title: "Certificate of Appreciation for Offering of The Four Requisites",
     labels: {
       date: "Date",
-      name: "Name",
-      address: "Address",
-      towards: "Donation Towards",
-      amount: "Amount",
     },
-    particles: { from: "", for: "", object: "" },
     body: [
       { text: "Having received a donation from " },
       { field: "name" },
@@ -29,8 +23,6 @@ export const CONTENT = {
         text: ", we gratefully acknowledge the contribution and offer our blessings and words of appreciation \u201CS\u0101dhu\u201D to all the donors.",
       },
     ],
-    acknowledgement:
-      "We gratefully acknowledge receipt of the contributions and offer our blessings and words of appreciation \u201CS\u0101dhu\u201D to all the donors.",
     signatures: ["Received by", "Monastery Trustee Board"],
     quotes: [
       "\u201COffering to the Sangha yields great benefit\u201D",
@@ -39,20 +31,16 @@ export const CONTENT = {
     logoLabels: ["Logo", "Logo"],
   },
   my: {
-    location: "ဩစတြေးလျနိုင်ငံ ဆစ်ဒနီမြို့",
     templeName: "ပါရမီသန္တိကရဝိဟာရဓမ္မရိပ်သာ",
     address: "18 Hilwa St, Villawood, NSW, Australia",
     title: "စတုပစ္စယအလှူတော် အနုမောဒနာမှတ်တမ်းလွှာ",
     labels: {
       date: "နေ့စွဲ",
-      name: "အလှူရှင်အမည်",
-      address: "နေရပ်လိပ်စာ",
-      towards: "",
-      amount: "အလှူတော်ငွေ",
     },
-    particles: { from: "ထံမှ", for: "အတွက်", object: "ကို" },
     body: [
-      { text: "" },
+      {
+        text: "မြတ်ဗုဒ္ဓသာသနာတော်ကြီး အရှည်တည်တံ့ ပြန့်ပွါးစေရန် စိတ်ရည်သန်၍ တည်ထောင်ဖွင့်လှစ်အပ်သော ပါရမီသန္တိကရဝိဟာရဓမ္မရိပ်သာသို့ ",
+      },
       { field: "name" },
       { text: " နေရပ်လိပ်စာ " },
       { field: "address" },
@@ -62,7 +50,6 @@ export const CONTENT = {
       { field: "amount" },
       { text: " ကို လက်ခံရရှိပါသဖြင့် အလှူရှင်အပေါင်းအား ကောင်းချီးနုမော် သာဓုခေါ်ဆို၍ မှတ်တမ်းတင်အပ်ပါသည်။" },
     ],
-    acknowledgement: "လက်ခံရရှိပါသဖြင့် အလှူရှင်အပေါင်းအား ကောင်းချီးနုမော် သာဓုခေါ်ဆို၍ မှတ်တမ်းတင်အပ်ပါသည်။",
     signatures: ["အလှူငွေကောက်ခံသူ", "ကျောင်းအကျိုးတော်ဆောင်အဖွဲ့"],
     quotes: [
       "\u201Cသံဃာတော်အား ပေးကမ်းလှူဒါန်းခြင်းသည် များသောအကျိုးရှိ၏\u201D",
