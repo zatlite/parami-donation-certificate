@@ -16,6 +16,19 @@ export const CONTENT = {
       amount: "Amount",
     },
     particles: { from: "", for: "", object: "" },
+    body: [
+      { text: "Having received a donation from " },
+      { field: "name" },
+      { text: " of " },
+      { field: "address" },
+      { text: " towards " },
+      { field: "towards" },
+      { text: " the amount of " },
+      { field: "amount" },
+      {
+        text: ", we gratefully acknowledge the contribution and offer our blessings and words of appreciation \u201CS\u0101dhu\u201D to all the donors.",
+      },
+    ],
     acknowledgement:
       "We gratefully acknowledge receipt of the contributions and offer our blessings and words of appreciation \u201CS\u0101dhu\u201D to all the donors.",
     signatures: ["Received by", "Monastery Trustee Board"],
@@ -38,6 +51,17 @@ export const CONTENT = {
       amount: "အလှူတော်ငွေ",
     },
     particles: { from: "ထံမှ", for: "အတွက်", object: "ကို" },
+    body: [
+      { text: "" },
+      { field: "name" },
+      { text: " နေရပ်လိပ်စာ " },
+      { field: "address" },
+      { text: " ထံမှ " },
+      { field: "towards" },
+      { text: " အတွက် အလှူတော်ငွေ " },
+      { field: "amount" },
+      { text: " ကို လက်ခံရရှိပါသဖြင့် အလှူရှင်အပေါင်းအား ကောင်းချီးနုမော် သာဓုခေါ်ဆို၍ မှတ်တမ်းတင်အပ်ပါသည်။" },
+    ],
     acknowledgement: "လက်ခံရရှိပါသဖြင့် အလှူရှင်အပေါင်းအား ကောင်းချီးနုမော် သာဓုခေါ်ဆို၍ မှတ်တမ်းတင်အပ်ပါသည်။",
     signatures: ["အလှူငွေကောက်ခံသူ", "ကျောင်းအကျိုးတော်ဆောင်အဖွဲ့"],
     quotes: [

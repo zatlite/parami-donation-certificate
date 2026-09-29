@@ -43,6 +43,15 @@
 		<span>Amount</span>
 		<input type="text" bind:value={form.amount} placeholder="e.g. $500 or in-kind items" />
 	</label>
+
+	<label class="field">
+		<span>Custom body text (optional)</span>
+		<textarea
+			rows="4"
+			bind:value={form.customBody}
+			placeholder="Leave blank to use the generated text. Anything typed here replaces the whole body paragraph."
+		></textarea>
+	</label>
 </section>
 
 <style>

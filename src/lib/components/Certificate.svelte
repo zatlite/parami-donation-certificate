@@ -7,6 +7,7 @@
   import "@fontsource/padauk/700.css";
   import { CONTENT } from "$lib/certificate-content.js";
   import fancyBorder from "$lib/assets/fancy-border.js";
+  import { onMount } from "svelte";
 
   let {
     form,
@@ -18,15 +19,55 @@
   } = $props();
 
   let c = $derived(CONTENT[lang] ?? CONTENT.en);
-</script>
 
-{#snippet field(label, value, trailing = "")}
-  <div class="c-field">
-    {#if label}<span class="c-label">{label}</span>{/if}
-    <span class="c-value">{value}</span>
-    {#if trailing}<span class="c-particle">{trailing}</span>{/if}
-  </div>
-{/snippet}
+  let bodyEl = $state(null);
+  const BASE_BODY_FS = 26;
+  const MIN_BODY_FS = 13;
+  // Keep the footer clear of the frame's bottom edge (> bottom border thickness).
+  // `.cert-border` padding-bottom is SAFE_BOTTOM; the small buffer avoids treating the
+  // pinned (margin-top:auto) footer sitting at the padding edge as an overflow.
+  const SAFE_BOTTOM = 80;
+  const FIT_LIMIT = 1123 - SAFE_BOTTOM + 4;
+
+  // Shrink the body prose only while doing so actually lifts the footer toward the border.
+  function fitBody() {
+    if (!node || !bodyEl) return;
+    const quotes = node.querySelector(".c-quotes");
+    if (!quotes) return;
+    // offsetTop/offsetHeight are layout px (unaffected by the preview transform).
+    const footerBottom = () => quotes.offsetTop + quotes.offsetHeight;
+    let fs = BASE_BODY_FS;
+    bodyEl.style.fontSize = fs + "px";
+    let prev = footerBottom();
+    while (fs > MIN_BODY_FS && prev > FIT_LIMIT) {
+      fs -= 1;
+      bodyEl.style.fontSize = fs + "px";
+      const now = footerBottom();
+      if (now >= prev) break; // footer is pinned by margin-top:auto; shrinking won't help
+      prev = now;
+    }
+  }
+
+  $effect(() => {
+    // Re-fit whenever the entered values, language, or signature change.
+    void (form.name,
+    form.address,
+    form.towards,
+    form.amount,
+    form.date,
+    form.customBody,
+    lang,
+    signature);
+    fitBody();
+  });
+
+  onMount(() => {
+    // Fonts can finish loading after the first measurement; re-fit once they're ready.
+    if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitBody);
+    }
+  });
+</script>
 
 <div class="cert-frame lang-{lang}" bind:this={node}>
   <img class="cert-frame-border" src={fancyBorder} alt="" aria-hidden="true" />
@@ -52,23 +93,16 @@
       <h2 class="c-title">{c.title}</h2>
     </div>
 
-    <section class="c-fields">
-      {#if lang === "my"}
-        {@render field(c.labels.date, form.date)}
-        {@render field(c.labels.name, form.name)}
-        {@render field(c.labels.address, form.address, c.particles.from)}
-        {@render field("", form.towards, c.particles.for)}
-        {@render field(c.labels.amount, form.amount, c.particles.object)}
-      {:else}
-        {@render field(c.labels.date, form.date)}
-        {@render field(c.labels.name, form.name)}
-        {@render field(c.labels.address, form.address)}
-        {@render field(c.labels.towards, form.towards)}
-        {@render field(c.labels.amount, form.amount)}
-      {/if}
-    </section>
+    <div class="c-date">
+      <span class="c-date-label">{c.labels.date}</span>
+      <span class="c-date-value">{form.date}</span>
+    </div>
 
-    <p class="c-ack">{c.acknowledgement}</p>
+    <p class="c-body" class:c-body-custom={form.customBody} bind:this={bodyEl}>
+      {#if form.customBody}{form.customBody}{:else}{#each c.body as seg}{#if seg.field}<span class="c-fill"
+            >{form[seg.field] || "\u00A0\u00A0\u00A0\u00A0"}</span
+          >{:else}{seg.text}{/if}{/each}{/if}
+    </p>
 
     <div class="c-sign">
       {#if signature}
@@ -119,7 +153,7 @@
     z-index: 1;
     height: 100%;
     box-sizing: border-box;
-    padding: 62px 66px;
+    padding: 72px 68px 80px;
     display: flex;
     flex-direction: column;
   }
@@ -172,66 +206,65 @@
     line-height: 1.3;
   }
 
+  .lang-my .c-temple {
+    font-size: 34px;
+  }
+
   .c-address {
     margin: 6px 0 0;
     font-size: 14px;
     color: #444;
   }
 
+  .c-date {
+    align-self: flex-end;
+    text-align: right;
+    margin: 0 0 30px;
+    font-size: 18px;
+  }
+
+  .c-date-label {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .c-date-value {
+    padding: 0 4px 2px;
+  }
+
   .c-title-wrap {
     text-align: center;
-    margin: 26px 0 22px;
+    margin: 16px 0 14px;
   }
 
   .c-title {
     display: inline-block;
     margin: 0;
-    font-size: 21px;
+    font-size: 27px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #7c2d12;
     padding: 8px 20px;
     border-top: 2px solid #b8860b;
     border-bottom: 2px solid #b8860b;
     line-height: 1.5;
   }
 
-  .c-fields {
-    margin: 8px 0 18px;
-  }
-
-  .c-field {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin: 14px 0;
-    font-size: 17px;
-  }
-
-  .c-label {
-    font-weight: 600;
-    white-space: nowrap;
-    color: #333;
-  }
-
-  .c-value {
-    flex: 1 1 auto;
-    min-height: 1.4em;
-    padding: 0 6px 2px;
-    border-bottom: 1px dotted #777;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  .c-particle {
-    white-space: nowrap;
-    color: #333;
-  }
-
-  .c-ack {
-    margin: 6px 0 0;
-    font-size: 16px;
+  .c-body {
+    margin: 8px 0 0;
+    font-size: 26px;
+    line-height: 1.75;
     text-align: center;
-    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .c-body-custom {
+    white-space: pre-wrap;
+  }
+
+  .c-fill {
+    font-weight: 700;
+    color: #1a1a1a;
+    word-break: break-word;
   }
 
   .c-sign {
@@ -257,7 +290,7 @@
 
   .c-sign-name {
     margin: 2px 0;
-    font-size: 15px;
+    font-size: 18px;
     color: #333;
   }
 
@@ -270,7 +303,7 @@
   }
 
   .c-quotes p {
-    margin: 6px 0;
+    margin: 8px 0;
     font-size: 15px;
     font-style: italic;
   }

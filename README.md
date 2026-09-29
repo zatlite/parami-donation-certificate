@@ -15,6 +15,8 @@ Built with **SvelteKit** (`adapter-static`), **html-to-image**, and **jsPDF**.
 
 - Form fields: **Name, Address, Donation Towards, Amount** (plus **Date**, pre-filled
   with today's date).
+- **Custom body text (optional)** — a free-text field that, when filled, replaces the whole
+  generated body paragraph (plain text, line breaks preserved; applies in both languages).
 - **Language toggle** — render the certificate **English-only** or **Burmese-only**.
   The fixed template text switches language; the values you type are shown as-is.
 - Live certificate preview that scales to fit the screen.
