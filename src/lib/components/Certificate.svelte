@@ -110,6 +110,7 @@
     <p class="c-body" class:c-body-custom={form.customBody} bind:this={bodyEl}>
       {#if form.customBody}{form.customBody}{:else}{#each c.body as seg}{#if seg.field}<span
               class="c-fill"
+              class:c-donor={seg.field === "name"}
               >{form[seg.field] || "\u00A0\u00A0\u00A0\u00A0"}</span
             >{:else}{seg.text}{/if}{/each}{/if}
     </p>
@@ -298,6 +299,11 @@
     color: #1f1fbc;
     -webkit-text-stroke: 0.5px #b8860b;
     word-break: break-word;
+  }
+
+  .c-donor {
+    display: block;
+    padding: 15px 0;
   }
 
   .c-sign {
