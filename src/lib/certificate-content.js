@@ -5,7 +5,7 @@
 export const CONTENT = {
   en: {
     templeName: "Pāramī Dhamma Centre",
-    address: "18 Hilwa St, Villawood, NSW, Australia",
+    address: "18 Hilwa St, Villawood NSW 2163, Australia",
     title: "Certificate of Appreciation for Offering of The Four Requisites",
     labels: {
       date: "Date",
@@ -32,7 +32,7 @@ export const CONTENT = {
   },
   my: {
     templeName: "ပါရမီဓမ္မရိပ်သာ",
-    address: "18 Hilwa St, Villawood, NSW, Australia",
+    address: "18 Hilwa St, Villawood NSW 2163, Australia",
     title: "စတုပစ္စယအလှူတော် အနုမောဒနာမှတ်တမ်းလွှာ",
     labels: {
       date: "နေ့စွဲ",
