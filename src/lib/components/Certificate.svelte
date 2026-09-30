@@ -90,7 +90,9 @@
         <p class="c-address">{c.address}</p>
       </div>
       {#if logoRight}
-        <img class="c-logo c-logo-img" src={logoRight} alt="" />
+        <div class="c-logo-photo">
+          <img src={logoRight} alt="" />
+        </div>
       {:else}
         <div class="c-logo" aria-hidden="true">{c.logoLabels[1]}</div>
       {/if}
@@ -206,6 +208,20 @@
     border-radius: 0;
     object-fit: contain;
     background: transparent;
+  }
+
+  .c-logo-photo {
+    flex: 0 0 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .c-logo-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .c-head-mid {

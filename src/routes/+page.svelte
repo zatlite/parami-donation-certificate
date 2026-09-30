@@ -3,7 +3,7 @@
   import CertificateForm from "$lib/components/CertificateForm.svelte";
   import Certificate from "$lib/components/Certificate.svelte";
   import { exportPng, exportPdf, copyImageToClipboard } from "$lib/export.js";
-  import paramiBuilding from "$lib/assets/parami-building.jpg";
+  import paramiBuilding from "$lib/assets/parami-building-circular.jpg";
   import paramiLogo from "$lib/assets/parami-logo.svg";
   import SignatureField from "$lib/components/SignatureField.svelte";
   import HistoryTab from "$lib/components/HistoryTab.svelte";
